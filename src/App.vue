@@ -7,11 +7,13 @@
 			console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide')
+			console.log('App Hide') 
 		}
 	}
 </script>
 
 <style>
 	/*每个页面公共css */
+	@import "./styles/iconfont.wxss";
+	@import "./styles/base.wxss";
 </style>
