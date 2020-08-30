@@ -163,31 +163,31 @@ exports.default = void 0;
 
 var _uniSegmentedControl = function _uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ "node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control").then((function () {
-    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ 44));
+    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ 50));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
 var homeAlbum = function homeAlbum() {
   __webpack_require__.e(/*! require.ensure | pages/home/home-album/index */ "pages/home/home-album/index").then((function () {
-    return resolve(__webpack_require__(/*! ./home-album */ 51));
+    return resolve(__webpack_require__(/*! ./home-album */ 57));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
 var homeCategory = function homeCategory() {
   __webpack_require__.e(/*! require.ensure | pages/home/home-category/index */ "pages/home/home-category/index").then((function () {
-    return resolve(__webpack_require__(/*! ./home-category */ 56));
+    return resolve(__webpack_require__(/*! ./home-category */ 64));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
 var homeNew = function homeNew() {
   __webpack_require__.e(/*! require.ensure | pages/home/home-new/index */ "pages/home/home-new/index").then((function () {
-    return resolve(__webpack_require__(/*! ./home-new */ 61));
+    return resolve(__webpack_require__(/*! ./home-new */ 69));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
 var homeRecommend = function homeRecommend() {
   Promise.all(/*! require.ensure | pages/home/home-recommend/index */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/home/home-recommend/index")]).then((function () {
-    return resolve(__webpack_require__(/*! ./home-recommend */ 66));
+    return resolve(__webpack_require__(/*! ./home-recommend */ 74));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 

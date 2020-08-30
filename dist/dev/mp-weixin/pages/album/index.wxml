@@ -1,0 +1,1 @@
+<view class="data-v-7a15b449"><view class="album_bg data-v-7a15b449"><image mode="widthFix" src="{{album.cover}}" class="data-v-7a15b449"></image><view class="album_info data-v-7a15b449"><view class="album_name data-v-7a15b449">{{album.name}}</view><view class="album_btn data-v-7a15b449">关注专辑</view></view></view></view>
