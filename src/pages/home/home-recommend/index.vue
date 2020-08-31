@@ -1,16 +1,16 @@
 <template>
 <!-- 判断数据是否已加载完毕 -->
-    <scroll-view @scrolltolower="handleToLower" class="recommend-view" scroll-y v-if="recommends.length>0">
+    <scroll-view @scrolltolower="handleToLower" class="recommend_view" scroll-y v-if="recommends.length>0">
         <!-- 推荐开始 -->
         <view class="recommend_wrap">
-             <view
+             <navigator
                 class="recommend_item"
                 v-for="item in  recommends" 
-                :key="item.id">
-                 <image mode="widthFix" :src="item.thumb">
-          
-                 </image>
-               </view>
+                :key="item.id"
+                :url="`/pages/album/index?id=${item.target}`"
+                >
+                 <image mode="widthFix" :src="item.thumb"></image>
+               </navigator>
         </view>
      <!-- 推荐结束 -->
      <!-- 月份开始 -->
@@ -29,12 +29,17 @@
             <view class="monthes_title_more">更多 ></view>
         </view>
         <view class="monthes_content">
-           
                  <view class="monthes_item"
-                  v-for="item in monthes.items"
+                  v-for="(item,index) in monthes.items"
                   :key="item.id"
                  >
-                  <image mode="aspectFill" :src="item.thumb+item.rule.replace('$<Height>',360)"> </image>
+                 <go-detail :list="monthes.items" :index="index">
+                    <image
+                     mode="aspectFill"
+                      :src="item.thumb+item.rule.replace('$<Height>',360)"> 
+
+                      </image>
+                    </go-detail>
                  </view>
             </view>
     </view>
@@ -47,9 +52,12 @@
         </view>
         <view class="host_content">
             <view class="hot_item"
-            v-for="item in hots" 
+            v-for="(item,index) in hots" 
             :key="item.id">
-             <image mode="widthFix" :src="item.thumb"></image>
+
+             <go-detail :list="hots" :index="index">
+                 <image mode="widthFix" :src="item.thumb"></image>
+              </go-detail>
             </view>
         </view>
     </view>
@@ -63,7 +71,11 @@
 
 <script>
 import moment from "moment";
+import  goDetail from  "@/components/goDetail";
 export default {
+  components:{
+    goDetail
+  },
     data(){
         return {
             // 推荐列表
@@ -93,7 +105,7 @@ export default {
         getList(){
               this.request({
               url:"http://157.122.54.189:9088/image/v3/homepage/vertical",
-              data:this.params,
+              data:this.params
             //   data:{
             //       //要获取几条
             //       limit:30,
@@ -105,8 +117,12 @@ export default {
           }).then(result=>{
             // console.log(result);
             // 判断还有没有下一页数据
-        if(result.res.vertical===0){
+        if(result.res.vertical.length===0){
             this.hasMore=false;
+              uni.showToast({
+                 title:"没有更多的数据了",
+                 icon:"none"
+             })
             return;
         }
             if(this.recommends.length===0){

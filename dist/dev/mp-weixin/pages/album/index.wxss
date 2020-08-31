@@ -63,4 +63,31 @@
           align-items: center;
   border-radius: 10rpx;
 }
+.album_author.data-v-7a15b449 {
+  padding: 10rpx;
+}
+.album_author .album_author_info.data-v-7a15b449 {
+  padding: 10rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.album_author .album_author_info image.data-v-7a15b449 {
+  width: 50rpx;
+}
+.album_author .album_author_info .author_name.data-v-7a15b449 {
+  color: #000;
+  margin-left: 15rpx;
+}
+.album_list.data-v-7a15b449 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.album_list .album_item.data-v-7a15b449 {
+  width: 33.33%;
+  border: 3rpx solid #fff;
+}
 

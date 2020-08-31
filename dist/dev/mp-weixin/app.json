@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/album/index",
     "pages/home/index",
+    "pages/album/index",
+    "pages/imgDetail/index",
     "pages/horizontal/index",
     "pages/video/index",
     "pages/search/index",

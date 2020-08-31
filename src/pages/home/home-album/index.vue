@@ -35,7 +35,7 @@
               :key="item.id" 
                :url="`/pages/album/index?id=${item.id}`">
                 <view class="album_img">
-                    <image mode="aspectFill" :src="item.cover"> </image>
+                    <image mode="aspectFill" :src="item.lcover"> </image>
                 </view>
                 <view class="album_info">
                     <view class="album_name">{{item.name}}</view>
@@ -140,24 +140,29 @@ export default {
         getList(){
          this.request({
            url:"http://157.122.54.189:9088/image/v1/wallpaper/album",
-         data:this.params
+           data:this.params
          })
            .then(result=>{
+             console.log(result);
               if(this.banner.length===0){
                  this.banner=result.res.banner;
               }
               if(result.res.album.length===0){
                   this.hasMore=false;
+                  uni.showToast({
+                    title:"没有更多数据了",
+                    icon:"none"
+                  });
                   return;
               }
             //   this.album=result.res.album;
-              this.album=[...this.album,...result.res.album];
-        })
-     }   ,
+              this.album = [...this.album,...result.res.album];
+        });
+     },
      //上啦加载-执行分页
      handleToLower(){
          if(this.hasMore){
-             this.params.skip+=this.params.limit;
+             this.params.skip += this.params.limit;
              this.getList();
          }else{
              uni.showToast({
