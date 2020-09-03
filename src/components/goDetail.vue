@@ -4,19 +4,19 @@
     </view>
 </template>
 
-
- 
 <script> 
-    export default{ 
+    export default { 
         props:{
+            // 数组
             list:Array,
+            // 索引
             index:Number
         },
-        mounted(){
+        // mounted(){
          
-            // console.log(this.list);
-            // console.log(this.index);
-        },
+        //     // console.log(this.list);
+        //     // console.log(this.index);
+        // },
         methods:{
            handleClick(){
           //1将数据缓存下来

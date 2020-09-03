@@ -25,7 +25,7 @@
          <view class="album_list">
             <view 
               class="album_item"
-              v-for="item in wallpaper"
+              v-for="(item,index) in wallpaper"
               :key="item.id"
             >
              <go-detail :list="wallpaper" :index="index">
@@ -60,9 +60,9 @@ export default {
     },
      onLoad(options){
     // 加载页面数据
-      console.log(options);
-      this.id=options.id;
-    //   this.id="5e5cf679e7bce739db1281e4";
+     // console.log(options);
+        this.id=options.id;
+    //  this.id="5e5cf679e7bce739db1281e4";
       this.getList();
      },
      //页面触底 上啦加载下一页事件

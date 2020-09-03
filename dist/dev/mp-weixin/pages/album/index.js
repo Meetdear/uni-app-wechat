@@ -104,7 +104,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.wallpaper, function(item, __i0__) {
+  var l0 = _vm.__map(_vm.wallpaper, function(item, index) {
     var $orig = _vm.__get_orig(item)
 
     var g0 = item.rule.replace("$<Height>", 360)
@@ -176,7 +176,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var goDetail = function goDetail() {
   __webpack_require__.e(/*! require.ensure | components/goDetail */ "components/goDetail").then((function () {
-    return resolve(__webpack_require__(/*! @/components/goDetail */ 219));
+    return resolve(__webpack_require__(/*! @/components/goDetail */ 225));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 
@@ -202,8 +202,8 @@ var _default = {
   },
   onLoad: function onLoad(options) {
     // 加载页面数据
-    console.log(options);
-    this.id = options.id; //   this.id="5e5cf679e7bce739db1281e4";
+    // console.log(options);
+    this.id = options.id; //  this.id="5e5cf679e7bce739db1281e4";
 
     this.getList();
   },

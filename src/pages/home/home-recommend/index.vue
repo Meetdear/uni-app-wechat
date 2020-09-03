@@ -157,9 +157,11 @@ export default {
                this.params.skip+=this.params.limit;
                this.getList();
            }else{
-             //弹窗提示
-             title:"没有数据了"
-             icon:"none"
+              // 弹窗提示用户
+           uni.showToast({
+            title: "没有数据了",
+            icon: "none"
+             });
            }
         }
     }
