@@ -176,7 +176,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var goDetail = function goDetail() {
   __webpack_require__.e(/*! require.ensure | components/goDetail */ "components/goDetail").then((function () {
-    return resolve(__webpack_require__(/*! @/components/goDetail */ 225));
+    return resolve(__webpack_require__(/*! @/components/goDetail */ 227));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 

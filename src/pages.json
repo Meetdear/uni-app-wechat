@@ -7,12 +7,7 @@
             }
         },
 
-        {
-            "path": "pages/album/index",
-            "style": {
-                "navigationBarTitleText": "专辑详情"
-            }
-        },
+
 
         {
             "path": "pages/imgDetail/index",

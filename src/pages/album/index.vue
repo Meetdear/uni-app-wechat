@@ -29,7 +29,7 @@
               :key="item.id"
             >
              <go-detail :list="wallpaper" :index="index">
-                 <image mode="widthFix" :src="item.thumb+item.rule.replace('$<Height>',360)"></image>
+                 <image mode="aspectFill" :src="item.thumb+item.rule.replace('$<Height>',360)"></image>
              </go-detail>
             </view>
          </view>
@@ -170,7 +170,7 @@ export default {
       width:33.33%;
       border: 3rpx solid #fff;
     image {
-       
+       height: 160rpx;
     }
   }
 }

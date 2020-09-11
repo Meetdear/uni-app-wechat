@@ -1,19 +1,26 @@
 <template>
    <view>
-       <!-- 用户信息 开始 -->
-      <view class="user_info">
-          <view class="user_icon"><image mode="widthFix" :src="imgDetail.user.avatar"></image>
-          </view>
-         <view class="user_desc">
-          <view class="user_name">{{imgDetail.user.name}}</view>
-          <view class="user_time">{{imgDetail.cnTime}}</view>
-         </view>
+        <!-- 用户信息 开始 -->
+    <view class="user_info">
+      <view class="user_icon">
+        <image
+          :src="imgDetail.user.avatar"
+          mode="widthFix"
+        ></image>
       </view>
-       <!-- 用户信息 结束-->
+      <view class="user_desc">
+        <view class="user_name">{{imgDetail.user.name}}</view>
+        <view class="user_time">{{imgDetail.cnTime}}</view>
+      </view>
+    </view>
+    <!-- 用户信息 结束 -->
+
 
        <!-- 高清大图 开始 -->
         <view class="high_img">
-           <image mode="widthFix" :src="imgDetail.newThumb"></image>
+          <swiper-action @swiperAction="handleSwiperAction">
+              <image mode="widthFix" :src="imgDetail.thumb"></image>
+          </swiper-action>
         </view>
        <!-- 高清大图 结束 -->
 
@@ -52,49 +59,119 @@
            </view>
         </view>
        <!-- 专辑 结束 -->
-
-       <!-- 最新评论 comment hot  -->
-        <view class="comment hot">
+ 
+         <!-- 最热评论 comment hot  -->
+        <view class="comment hot"   v-if="hot.length">
           <view class="comment_title">
             <text class="iconfont iconhot1"></text>
             <text class="comment_text">最新评论</text>
           </view>
           
           <view class="comment_list">
-            <view class="comment_item"
+            <view
+             class="comment_item"
             v-for="item in hot"
             :key="item.id">
             <!-- 用户信息 -->
              <view class="comment_user">
                <!-- 用户头像 -->
-               <view class="user-icon">
-                  <image :src="item.user.avatar"></image>
+               <view class="user_icon">
+                  <image  mode="widthFix"
+                   :src="item.user.avatar"></image>
                </view>
+
                <!-- 用户名称 -->
             <view class="user_name">
                <view class="user_nickname">{{item.user.name}}</view>
-               <view class="user_time">{{item.atime}}</view>
+               <view class="user_time">{{item.cnTime}}</view>
             </view>
-            <!-- 评论数据 -->
+            <!-- 用户徽章 -->
+            <view class="user_badge">
+               <image v-for="item2 in item.user.title"
+               :key="item2.icon"
+               :src="item2.icon">  
+
+               </image>
+            </view>
+            <!-- 评论数据 --> 
             <view class="comment_desc">
-               <image></image>
+              <view class="comment_content"> {{item.content}} </view>
+              <view class="comment_like">
+                 <text class="iconfont icondianzan">{{item.size}}</text>
+              </view>
             </view>
+            </view> 
           </view>
        </view>
       </view>
+
+       <!-- 最热评论 comment new  -->
+        <view class="comment new"    v-if="comment.length">
+          <view class="comment_title">
+            <text class="iconfont iconpinglun"></text>
+            <text class="comment_text">最新评论</text>
+          </view>
+           
+          <view class="comment_list">
+            <view 
+            class="comment_item"
+            v-for="item in comment"
+            :key="item.id">
+            <!-- 用户信息 -->
+             <view class="comment_user">
+               <!-- 用户头像 -->
+               <view class="user_icon">
+                  <image  mode="widthFix" :src="item.user.avatar"></image>
+               </view>
+
+               <!-- 用户名称 -->
+            <view class="user_name">
+               <view class="user_nickname">{{item.user.name}}</view>
+               <view class="user_time">{{item.cnTime }}</view>
+            </view>
+            <!-- 用户徽章 -->
+            <view class="user_badge">
+               <image v-for="item2 in item.user.title"
+               :key="item2.icon"
+               :src="item2.icon">  
+
+               </image>
+            </view>
+            <!-- 评论数据 --> 
+
+            <view class="comment_desc">
+              <view class="comment_content"> {{item.content}} </view>
+              <view class="comment_like">
+                 <text class="iconfont icondianzan">{{item.size}}</text>
+              </view>
+            </view>
+            </view> 
+          </view>
+       </view>
+      </view>
+
+      <!-- 下载开始 -->
+       <view class="download">
+          <view class="download_btn" @click="handleDownload">下载图片</view>
+       </view>
+      <!-- 下载结束 -->
    </view>
 </template>
     
 <script>  
 
  import moment from "moment";
+ import swiperAction from "@/components/swiperAction"
 //  设置语言为中文
 moment.locale("zh-cn");
-   export default{  
+   export default { 
+      components:{
+          swiperAction
+      } , 
       data(){  
          return{
             // 图片信息对象 包含着用户头像
-            imgDetail:{},
+            imgDetail:{}, 
             // 专辑数据 数组
             album:[],
             // 最热评论
@@ -104,13 +181,21 @@ moment.locale("zh-cn");
             // 图片索引
             imgIndex:0
          }
-      },
+      }, 
     onLoad(){
-        console.log(getApp().globalData);
-        const {imgList,imgIndex}=getApp().globalData;
-        this.imgDetail=imgList[imgIndex];
+      //  console.log(getApp().globalData);
+        const{imgIndex}=getApp().globalData;
+        this.imgIndex=imgIndex;
+        this.getData();
+        
+    },
+    methods: { 
+      //  给当前页面赋值
+       getData(){
+       const{imgList}=getApp().globalData;
+        this.imgDetail=imgList[this.imgIndex];
       //   下面是防止报错信息 又能显示出来的做法=>高清图片
-        this.imgDetail.newThumb=this.imgDetail.thumb+this.imgDetail.rule.replace('$<Height>',360);
+     
       
       //   xxx年前的数据
       this.imgDetail.cnTime=moment(this.imgDetail.atime*1000).fromNow();
@@ -118,25 +203,60 @@ moment.locale("zh-cn");
       // 获取图片详情的id
      // this.imgDetail.id
       this.getComments(this.imgDetail.id);
-    },
-    methods:{
+       },
        getComments(id){
           this.request({
-                url:`http://157.122.54.189:9088/image/v2/wallpaper/wallpaper/${id}/comment`
+                url: `http://157.122.54.189:9088/image/v2/wallpaper/wallpaper/${id}/comment`
                 
           }).then(result=>{
-            // console.log(result);
+            console.log(result);
              this.album=result.res.album;
+
+            //  给 hot数组中的对象添加一个时间属性 xxx月前
+             result.res.hot.forEach(v=>v.cnTime=moment(v.atime*1000).fromNow()) ;
              this.hot=result.res.hot;
              this.comment=result.res.comment;
              
           })
-       }
-    }
-   }
+        },
+//  滑动事件
+    handleSwiperAction(e){
+      /*
+       1 用户左滑imgIndex++
+       2 用户右滑 imgIndex--
+       3 步判断 数组是否越界问题
+       4 左滑 e.directory==="left"&&this.imgIndex<imgList.length-1
+       5 右滑 e.directory==="right"&&this.imgIndex>0
+      */
+    const { imgList } = getApp().globalData;
+     if(e.direction==="left"&&this.imgIndex<imgList.length-1){
+      //可以进行 左滑 下一页
+      this.imgIndex++;
+      this.getData();
+     }else if( e.direction==="right"&&this.imgIndex>0){
+      //可以进行 右滑 上一页
+        this.imgIndex--;
+        this.getData();
+     }else{
+        uni.showToast({
+           title:"没有数据了",
+           icon:"none"
+        });
+     }
+       //console.log(e);
+    },
+   },
+   // 点击下载图片
+   handleDownload(){
+       uni.downloadFile
+       uni.saveImageToPhotosAlbum
+
+       // 1 将远程文件下载到小程序的内存中
+     }
+   };
 </script>
   
- <style lang="scss">
+ <style lang="scss" scoped>
      .user_info {
         display:flex;
        padding:20rpx;
@@ -185,7 +305,11 @@ moment.locale("zh-cn");
       }  
     }
 }
-
+ .high_img {
+  image {
+    border-bottom: 1rpx solid #eee;
+  }
+}
 // 专辑
 .album_wrap {
    padding:20rpx;
@@ -219,8 +343,8 @@ moment.locale("zh-cn");
        background-color: $color;
        color:#fff;
        display: flex;
-       justify-content: center;
-       align-items:center;
+       justify-content: center; 
+       align-items:center;  
         }
 
         .album_name {
@@ -243,7 +367,7 @@ moment.locale("zh-cn");
 }
 
 // 最热评论
-.comment.hot {
+.comment {
   .comment_title {
         padding:15rpx;
     .iconfont{
@@ -260,8 +384,85 @@ moment.locale("zh-cn");
     }
   }
 
-  .comment_list {
+    .comment_list {   
+       .comment_item {
+            border-bottom: 15rpx solid #eee;
+         // 用户信息
+        .comment_user {
+          display: flex;
+           padding:20rpx 0;
+          .user_icon {
+             width: 15%;
+             display: flex;
+             justify-content: center;
+             align-items:center;
+             image {
+                width:90%;
+        }
+      }
+    .user_name {
+       flex:1;
+      .user_nickname {
+        color:#777;
+        }
+      .user_time {
+          color:#ccc;
+          font-size: 24rpx;
+          padding:5rpx;
+        }
+      }
+      
+    .user_badge {
+        image {
+           width:40rpx;
+           height:40rpx;
+           display: inline-block;
+        }
+      }
+  }
+//   评论数据
+    .comment_desc {
+       display: flex;
+       padding:30rpx 0;
+      .comment_content {
+        flex:1;
+        padding-left:15%;
+        color:#000;
+        }
 
+      .comment_like {
+         text-align:right;
+          .icondianzan {
+             
+          }
+        }
+      }
+    }
+  }
+}
+   // 最新评论
+.new {
+  .iconpinglun {
+    color: aqua !important;
+  }
+}
+ 
+// 下载
+.download {
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .download_btn {
+    width: 90%;
+    height: 80%;
+    background-color: $color;
+    color: #fff;
+    font-size: 50rpx;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
  </style>
