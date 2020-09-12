@@ -90,4 +90,7 @@
   width: 33.33%;
   border: 3rpx solid #fff;
 }
+.album_list .album_item image.data-v-7a15b449 {
+  height: 160rpx;
+}
 

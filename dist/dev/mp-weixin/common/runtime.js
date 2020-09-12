@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/home/home-recommend/index":1,"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":1,"pages/home/home-album/index":1};
+/******/ 		var cssChunks = {"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":1,"pages/video/video-main/index":1,"pages/home/home-recommend/index":1,"pages/home/home-album/index":1,"pages/home/home-category/index":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/home/home-recommend/index":"pages/home/home-recommend/index","node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control","pages/home/home-album/index":"pages/home/home-album/index","pages/home/home-category/index":"pages/home/home-category/index","pages/home/home-new/index":"pages/home/home-new/index","components/swiperAction":"components/swiperAction","components/goDetail":"components/goDetail"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control","pages/video/video-category/index":"pages/video/video-category/index","pages/video/video-main/index":"pages/video/video-main/index","pages/home/home-recommend/index":"pages/home/home-recommend/index","pages/home/home-album/index":"pages/home/home-album/index","pages/home/home-category/index":"pages/home/home-category/index","pages/home/home-new/index":"pages/home/home-new/index","components/goDetail":"components/goDetail","components/swiperAction":"components/swiperAction"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
