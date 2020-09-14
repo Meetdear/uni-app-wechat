@@ -1,5 +1,5 @@
 <template>
- <view class="video_play">视频播放也
+ <view class="video_play">
     <image :src="videObj.img"></image>
    
   <!-- 工具栏 开始 -->
@@ -20,7 +20,7 @@
 
    <!-- 下载开始 -->
      <view class="download">
-       <view class="download_btn">
+       <view @click="handleDownload" class="download_btn">
            下载高清
        </view>
      </view>
@@ -45,7 +45,19 @@ export default {
         // 开关声音
          handleMuted(){
            this.muted=!this.muted;
-         }
+         },
+          // 下载视频
+         async handleDownload(){
+           await uni.showLoading({title:"下载中"});
+            //1将远程文件 下载到小程序内存中
+          const {tempFilePath} =(await uni.downloadFile({ url:this.videObj.video}))[1]
+            // 2  将内存中的文件 下载到本地上
+          await uni.saveVideoToPhotosAlbum({
+              filePath:tempFilePath
+            });
+            uni.hideLoading();
+            await uni.showToast({title:"下载成功"})
+          }
     }
 }
 </script>

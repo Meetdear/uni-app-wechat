@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/video/index",
     "pages/home/index",
+    "pages/video/index",
     "pages/videoPlay/index",
     "pages/imgCategory/index",
     "pages/album/index",

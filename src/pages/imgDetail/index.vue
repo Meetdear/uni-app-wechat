@@ -149,7 +149,6 @@
           </view>
        </view>
       </view>
-
       <!-- 下载开始 -->
        <view class="download">
           <view class="download_btn" @click="handleDownload">下载图片</view>
@@ -352,7 +351,7 @@ moment.locale("zh-cn");
       .album_cover {
          flex:1;
         image {
-         width:188rpx;
+         width:180rpx;
          height:180rpx;
         }
       }

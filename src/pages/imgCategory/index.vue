@@ -1,6 +1,5 @@
 <template>
      <view>
-       
          <view class="category_tab">
              <view  class="category_tab_title">
                  <view class="title_inner">

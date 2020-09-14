@@ -103,7 +103,7 @@
           flex: 1;
 }
 .album_wrap .album_list .album_item .album_cover image.data-v-0d480be4 {
-  width: 188rpx;
+  width: 180rpx;
   height: 180rpx;
 }
 .album_wrap .album_list .album_item .album_info.data-v-0d480be4 {
