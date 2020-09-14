@@ -105,6 +105,7 @@ export default {
         getList(){
               this.request({
               url:"http://157.122.54.189:9088/image/v3/homepage/vertical",
+          
               data:this.params
             //   data:{
             //       //要获取几条

@@ -190,8 +190,8 @@ var _default = {
         limit: 30,
         order: "new",
         skip: 0,
-        //1 返回值中 有album对象 表示第一次请求数据
-        //    0 返回值中 只有wallpaper 数组 不是第一次请求数据
+        // 1 返回值中 有 album对象 表示第一次请求数据
+        // 0 返回值中 只有 wallpaper 数组  不是第一次请求数据
         first: 1
       },
       id: -1,
@@ -201,27 +201,25 @@ var _default = {
     };
   },
   onLoad: function onLoad(options) {
-    // 加载页面数据
     // console.log(options);
-    this.id = options.id; //  this.id="5e5cf679e7bce739db1281e4";
+    this.id = options.id; // this.id="5e26b92be7bce739af7644b3"; 
+    // this.id="5d5f8e45e7bce75ae7fb8278";
 
     this.getList();
   },
-  //页面触底 上啦加载下一页事件
+  // 页面触底 上拉加载下一页事件
   onReachBottom: function onReachBottom() {
+    // console.log("我也是有底线的");
     if (this.hasMore) {
-      this.params.first = 0; // 0 返回值中 只有wallpaper 数组 不是第一次请求数据
-
+      this.params.first = 0;
       this.params.skip += this.params.limit;
       this.getList();
     } else {
       uni.showToast({
-        title: "没有更多的数据了",
+        title: "没有更多数据了",
         icon: "none"
       });
     }
-
-    console.log("123");
   },
   methods: {
     getList: function getList() {
@@ -231,22 +229,20 @@ var _default = {
         url: "http://157.122.54.189:9088/image/v1/wallpaper/album/".concat(this.id, "/wallpaper"),
         data: this.params
       }).then(function (result) {
-        //  console.log(result);
-        //  console.log(JSON.stringify(result.res.album.desc))
+        // console.log(result);
+        // console.log(JSON.stringify(result.res.album.desc));
         if (Object.keys(_this.album).length === 0) {
           _this.album = result.res.album;
         }
 
         if (result.res.wallpaper.length === 0) {
-          //初始打开时提示信息
           _this.hasMore = false;
           uni.showToast({
-            title: "没有更多的数据了",
+            title: "没有更多数据了",
             icon: "none"
           });
           return;
-        } //  this.wallpaper=result.res.wallpaper;
-
+        }
 
         _this.wallpaper = [].concat(_toConsumableArray(_this.wallpaper), _toConsumableArray(result.res.wallpaper));
       });

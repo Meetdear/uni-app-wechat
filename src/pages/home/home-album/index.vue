@@ -161,6 +161,7 @@ export default {
                   return;
               }
             //   this.album=result.res.album;
+            // es6解构
               this.album = [...this.album,...result.res.album];
         });
      },

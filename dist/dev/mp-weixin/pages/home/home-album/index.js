@@ -297,6 +297,7 @@ var _default = {
           });
           return;
         } //   this.album=result.res.album;
+        // es6解构
 
 
         _this.album = [].concat(_toConsumableArray(_this.album), _toConsumableArray(result.res.album));

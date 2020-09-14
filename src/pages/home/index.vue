@@ -1,6 +1,6 @@
 <template>
      <view>
-         <view class="home_tab">
+         <view class="home_tab">shouysd 
              <view  class="home_tab_title">
                  <view class="title_inner">
                       <uni-segmented-control :current="current" :values="items.map(v=>v.title)" @clickItem="onClickItem" style-type="text" active-color="#d4237a"></uni-segmented-control>  

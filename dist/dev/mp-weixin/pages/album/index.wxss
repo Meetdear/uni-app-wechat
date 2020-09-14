@@ -51,7 +51,7 @@
 .album_bg .album_info .album_btn.data-v-7a15b449 {
   background-color: #d52a7e;
   width: 152rpx;
-  height: 50rpx;
+  height: 60rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
